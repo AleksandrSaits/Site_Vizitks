@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexander Voronov | Проекты</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Дополнительные стили для страницы проектов */
+        .projects-hero {
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            text-align: center;
+        }
+        
+        .filter-section {
+            margin-bottom: 3rem;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.8rem 2rem;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .project-card {
+            background: var(--dark-card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.4s;
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .project-card.hidden {
+            display: none;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .project-image {
+            height: 200px;
+            background: linear-gradient(145deg, var(--dark-light), var(--dark-card));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-image i {
+            font-size: 4rem;
+            color: var(--primary);
+            transition: all 0.4s;
+        }
+        
+        .project-card:hover .project-image i {
+            transform: scale(1.1) rotate(5deg);
+            color: var(--secondary);
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-description {
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: gap 0.3s;
+        }
+        
+        .project-link:hover {
+            gap: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- НАВИГАЦИЯ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <span class="logo-text">AV</span>
+            </div>
+            <button class="menu-btn" aria-label="Меню">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="../index.html#home">Главная</a></li>
+                <li><a href="../index.html#expertise">Экспертиза</a></li>
+                <li><a href="projects.html" class="active">Проекты</a></li>
+                <li><a href="about.html">Обо мне</a></li>
+                <li><a href="../index.html#contact">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- PROJECTS HERO -->
+    <section class="projects-hero">
+        <div class="container">
+            <h1 class="hero-title fade-up">Мои <span class="gradient-text">проекты</span></h1>
+            <p class="hero-text fade-up" style="margin: 1rem auto 2rem; max-width: 600px;">
+                Более 50 реализованных проектов разного масштаба и сложности. От стартапов до enterprise-решений.
+            </p>
+        </div>
+    </section>
+
+    <!-- ФИЛЬТРЫ -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-buttons fade-up">
+                <button class="filter-btn active" data-filter="all">Все проекты</button>
+                <button class="filter-btn" data-filter="fintech">FinTech</button>
+                <button class="filter-btn" data-filter="iot">IoT</button>
+                <button class="filter-btn" data-filter="vr">VR/AR</button>
+                <button class="filter-btn" data-filter="ai">AI/ML</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПРОЕКТЫ -->
+    <section>
+        <div class="container">
+            <div class="projects-grid" id="projectsGrid">
+                <!-- FinTech Platform -->
+                <div class="project-card fade-up" data-category="fintech">
+                    <div class="project-image">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">FinTech Platform</h3>
+                        <p class="project-description">Торговая платформа с обработкой 2M+ событий/сек. Реал-тайм графики, ордерная книга, маржинальная торговля.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">TimescaleDB</span>
+                            <span class="tech-tag">Redis</span>
+                            <span class="tech-tag">WebSocket</span>
+                        </div>
+                        <a href="#" class="project-link">Подробнее <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- IoT Platform -->
+                <div class="project-card fade-up" data-category="iot">
+                    <div class="project-image">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">IoT Platform "Nexus"</h3>
+                        <p class="project-description">Управление миллионами устройств в реальном времени. Сбор телеметрии, удаленное конфигурирование, алертинг.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Go</span>
+                            <span class="tech-tag">MQTT</span>
+                            <span class="tech-tag">InfluxDB</span>
+                            <span class="tech-tag">Grafana</span>
+                            <span class="tech-tag">Kafka</span>
+                        </div>
+                        <a href="#" class="project-link">Подробнее <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- VR Training Simulator -->
+                <div class="project-card fade-up" data-category="vr">
+                    <div class="project-image">
+                        <i class="fa-solid fa-vr-cardboard"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">VR Training Simulator</h3>
+                        <p class="project-description">Симулятор для обучения пилотов с физически точной графикой. Поддержка многопользовательского режима.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Unity</span>
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">WebGL</span>
+                            <span class="tech-tag">WebRTC</span>
+                            <span class="tech-tag">Photon</span>
+                        </div>
+                        <a href="#" class="project-link">Подробнее <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- AI Recommendation Engine -->
+                <div class="project-card fade-up" data-category="ai">
+                    <div class="project-image">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">AI Recommendation Engine</h3>
+                        <p class="project-description">Персональные рекомендации для e-commerce с использованием глубокого обучения. Увеличение конверсии на 35%.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Redis</span>
+                        </div>
+                        <a href="#" class="project-link">Подробнее <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- E-commerce Platform -->
+                <div class="project-card fade-up" data-category="web">
+                    <div class="project-image">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">E-commerce Platform</h3>
+                        <p class="project-description">Масштабируемая платформа для онлайн-ритейла с поддержкой миллионов товаров и высокой нагрузкой.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Next.js</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">GraphQL</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">AWS</span>
+                        </div>
+                        <a href="#" class="project-link">Подробнее <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Healthcare System -->
+                <div class="project-card fade-up" data-category="web">
+                    <div class="project-image">
+                        <i class="fa-solid fa-hospital"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Healthcare Management</h3>
+                        <p class="project-description">Система для управления клиникой: запись пациентов, электронные карты, интеграция с лабораториями.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Django</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">Redis</span>
+                        </div>
+                        <a href="#" class="project-link">Подробнее <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+            <p>© 2026 Alexander Voronov. Digital Architect.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js" defer></script>
+    <script>
+        // Фильтрация проектов
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Убираем активный класс у всех кнопок
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filter = button.dataset.filter;
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
